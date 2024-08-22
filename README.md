@@ -41,6 +41,10 @@ To get started with the Employee Skill Management System, follow the steps below
 
 git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Inventory
 
+:three: After cloning the repo, we can run the backend, in the respective ide
+
+:four:Connect to database using the url given in terminal(http://localhost:8080/h2-console)
+
 **Configuration**
 
 The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
