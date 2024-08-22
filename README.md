@@ -38,6 +38,13 @@ Clone the Repository
 
 git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Inventory
 
+Configuration
+The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
+
+Database URL: would be shown in terminal
+Username: sa
+Password: (none)
+
 
 Frontend Structure
 
