@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Employee Skill Management</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>EMPLOYEE SKILL</h1>
+        <a href="stats.html">View Statistics</a>
+        <input type="text" id="employeeName" placeholder="Enter Employee Name">
+        <input type="text" id="employeeSkill" placeholder="Enter Skill">
+        <input type="text" id="skillLevel" placeholder="Enter Skill Level">
+        <button onclick="addEmployee()" id="sendRequestButton">ADD</button>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>EMPLOYEE NAME</th>
+                    <th>SKILL</th>
+                    <th>SKILL LEVEL</th>
+                    <th>DATE OF UPDATE</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody id="employeeTable">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js"></script>
+
+    <script>
+        let employeeId = 0;
+
+        function addEmployee() {
+            const employeeName = document.getElementById('employeeName').value;
+            const employeeSkill = document.getElementById('employeeSkill').value;
+            const skillLevel = document.getElementById('skillLevel').value;
+
+            if (employeeName === '' || employeeSkill === '' || skillLevel === '') return;
+
+            //if (employeeName === null || employeeSkill === null || skillLevel === null) return;
+            const data = {
+                "employeeName": employeeName,
+                "employeeSkill": employeeSkill,
+                "skillLevel": skillLevel,
+                "date_of_update": new Date().toLocaleDateString()
+            };
+
+
+            employeeId++;
+            const table = document.getElementById('employeeTable');
+            const row = table.insertRow();
+            row.setAttribute('id', `employee-${employeeId}`);
+
+            row.innerHTML = `
+                <td>${employeeId}</td>
+                <td>${employeeName}</td>
+                <td>${employeeSkill}</td>
+                <td>${skillLevel}</td>
+                <td>${new Date().toLocaleDateString()}</td>
+                <td class="actions">
+                    <button onclick="editEmployee(${employeeId})">EDIT</button>
+                    <button onclick="deleteEmployee(${employeeId})">DELETE</button>
+                </td>
+            `;
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+                "employee_name": employeeName,
+                "date_of_update": new Date().toLocaleDateString(),
+                "skill": employeeSkill,
+                "skill_level": skillLevel
+            });
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch("http://localhost:8080/api/v1/employees", requestOptions)
+                .then(function (response) { console.log(response.text()) })
+                .then(function (result) { console.log(result) })
+                .catch((error) => console.error(error));
+
+            document.getElementById('employeeName').value = '';
+            document.getElementById('employeeSkill').value = '';
+            document.getElementById('skillLevel').value = '';
+        }
+
+        function editEmployee(id, employeeId) {
+
+            const row = document.getElementById(`employee-${employeeId}`);
+            const newName = prompt("Edit Employee Name:", row.cells[1].innerText);
+            const newSkill = prompt("Edit Skill:", row.cells[2].innerText);
+            const newLevel = prompt("Edit Skill Level:", row.cells[3].innerText);
+            if (newName !== null) row.cells[1].innerText = newName;
+            if (newSkill !== null) row.cells[2].innerText = newSkill;
+            if (newLevel !== null) row.cells[3].innerText = newLevel;
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+
+                "skill_level": newLevel,
+                "date_of_update": new Date().toLocaleDateString(),
+                "employee_name": newName,
+                "skill": newSkill
+            });
+
+            const requestOptions = {
+                method: "PUT",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+            fetch(`http://localhost:8080/api/v1/employees/${id}`, requestOptions)
+                .then((response) => response.text())
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));
+
+        }
+
+        function deleteEmployee(id, employeeId) {
+            const row = document.getElementById(`employee-${employeeId}`);
+            row.parentNode.removeChild(row);
+
+            const requestOptions = {
+                method: "DELETE",
+                redirect: "follow"
+            };
+
+            fetch(`http://localhost:8080/api/v1/employees/${id}`, requestOptions)
+                .then((response) => response.text())
+                .then((result) => console.log(result))
+                .catch((error) => console.error(error));
+        }
+
+        function getEmployees() {
+
+            const requestOptions = {
+                method: "GET",
+                redirect: "follow"
+            };
+
+            fetch("http://localhost:8080/api/v1/employees", requestOptions)
+                .then((response) => response.json())
+                .then(function (result) {
+
+                    for (let i = 0; i < result.length; i++) {
+
+                        employeeId = i + 1;
+                        const table = document.getElementById('employeeTable');
+                        const row = table.insertRow();
+                        row.setAttribute('id', `employee-${employeeId}`);
+
+                        row.innerHTML = `
+                            <th> ${result[i].id}</th>
+                                <th> ${result[i].employee_name}</th>
+                                <th> ${result[i].skill}</th>
+                                <th> ${result[i].skill_level}</th>
+                                <th> ${result[i].date_of_update}</th>
+                                <th> <button onclick="editEmployee(${result[i].id}, ${employeeId})">EDIT</button>
+                    <button onclick="deleteEmployee(${result[i].id}, ${employeeId})">DELETE</button> </th>
+                        `;
+
+                    }
+                })
+                .catch((error) => console.error(error))
+        }
+
+        // A $( document ).ready() block.
+        $(document).ready(function () {
+            getEmployees()
+        });
+    </script>
+</body>
+
+</html>
