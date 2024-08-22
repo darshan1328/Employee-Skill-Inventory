@@ -1,12 +1,12 @@
 # Darshan_231me213_Employee-Skill-Inventory
 180 dc assignment
 
-Overview
+**Overview**
 
 The Employee Skill Inventory is a web application that allows users to perform CRUD (Create, Read, Update, Delete) operations on employee skills, employee name and skill level. This application features a user-friendly interface for managing employee skill data, backed by a backend service.
 
 
-Tech Stack
+**Tech Stack**
 
 :arrow_right:Frontend: HTML, CSS, JavaScript
 
@@ -15,7 +15,7 @@ Tech Stack
 :arrow_right:Database: H2 Database (in-memory)
 
 
-Features
+**Features**
 
 :arrow_right:Add Employee Skills: Create new records for employee skills.
 
@@ -25,28 +25,34 @@ Features
 
 :arrow_right:Delete Employee Skills: Remove records from the system.
 
-Getting Started :red_circle: :yellow_circle: :green_circle:
+:checkered_flag: **Getting Started** :red_circle: :yellow_circle: :green_circle:
 
 To get started with the Employee Skill Management System, follow the steps below:
 
-Prerequisites
-Java JDK 11 or later
-Maven (for building the Spring Boot application)
-A web browser (for accessing the frontend)
+:one: **Prerequisites**
 
-Clone the Repository
+:white_check_mark: Java JDK 11 or later
+
+:white_check_mark: Maven (for building the Spring Boot application)
+
+:white_check_mark: A web browser (for accessing the frontend)
+
+:two: :octocat: **Clone the Repository** :octocat:
 
 git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Inventory
 
-Configuration
+**Configuration**
+
 The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
 
 Database URL: would be shown in terminal
+
 Username: sa
+
 Password: (none)
 
 
-Frontend Structure
+**Frontend Structure**
 
 index.html: Main entry point for the web application.
             Styles for the frontend.
