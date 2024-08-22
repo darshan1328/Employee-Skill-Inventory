@@ -47,6 +47,7 @@ git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Invento
 
 :five: Open the index.html page on a browser and run the application
 
+
 **Configuration**
 
 The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
@@ -56,6 +57,8 @@ The application uses an H2 in-memory database by default, which is suitable for 
 :arrow_right: Username: sa
 
 :arrow_right: Password: (none)
+
+
 
 
 :computer: **Frontend Structure** :computer:
