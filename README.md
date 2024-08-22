@@ -60,4 +60,9 @@ index.html: Main entry point for the web application.
 
 The css code and javascript code is combined in index.html file itself.
 
+**User Interface**
+
+![image](https://github.com/user-attachments/assets/92f144a4-092a-4821-ba9d-8408890d71ea)
+
+
 
