@@ -45,11 +45,11 @@ git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Invento
 
 The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
 
-Database URL: would be shown in terminal
+:arrow_right: Database URL: would be shown in terminal
 
-Username: sa
+:arrow_right: Username: sa
 
-Password: (none)
+:arrow_right: Password: (none)
 
 
 **Frontend Structure**
