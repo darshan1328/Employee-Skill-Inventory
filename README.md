@@ -45,6 +45,8 @@ git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Invento
 
 :four:Connect to database using the url given in terminal(http://localhost:8080/h2-console)
 
+:five: Open the index.html page on a browser and run the application
+
 **Configuration**
 
 The application uses an H2 in-memory database by default, which is suitable for development and testing. For production use, you would need to configure a persistent database.
