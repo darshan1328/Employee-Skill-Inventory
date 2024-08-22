@@ -58,7 +58,7 @@ The application uses an H2 in-memory database by default, which is suitable for 
 :arrow_right: Password: (none)
 
 
-**Frontend Structure**
+:computer: **Frontend Structure** :computer:
 
 index.html: Main entry point for the web application.
             Styles for the frontend.
@@ -66,7 +66,7 @@ index.html: Main entry point for the web application.
 
 The css code and javascript code is combined in index.html file itself.
 
-**User Interface**
+:computer: **User Interface** :computer:
 
 ![image](https://github.com/user-attachments/assets/92f144a4-092a-4821-ba9d-8408890d71ea)
 
