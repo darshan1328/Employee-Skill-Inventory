@@ -33,3 +33,18 @@ Prerequisites
 Java JDK 11 or later
 Maven (for building the Spring Boot application)
 A web browser (for accessing the frontend)
+
+Clone the Repository
+
+git clone https://github.com/darshan1328/Darshan_231me213_Employee-Skill-Inventory
+
+
+Frontend Structure
+
+index.html: Main entry point for the web application.
+            Styles for the frontend.
+            JavaScript for handling user interactions and API calls.
+
+The css code and javascript code is combined in index.html file itself.
+
+
